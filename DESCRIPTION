@@ -1,0 +1,28 @@
+Package: encryptr
+Type: Package
+Title: Encrypt and decrypt data frame or tibble columns using the strong RSA public/private keys 
+Version: 0.1.0
+Authors@R: c(
+  person(given = "Cameron", family = "Fairfield", role = c("aut", "cre"), email = "cameron.fairfield@ed.ac.uk"),
+  person(given = "Ewen", family = "Harrison", role = c("aut"), email = "ewen.harrison@ed.ac.uk"),
+  person(given = "Riinu", family = "Ots", role = c("aut")),
+  person(given = "Tom", family = "Drake", role = c("aut"))
+  )
+Maintainer: Cameron Fairfield <cameron.fairfield@ed.ac.uk>
+Description: It is important to ensure that sensitive data is protected. 
+    This straightforward package is aimed at the end-user. 
+    Strong RSA encryption using a public/private key pair is used to encrypt data frame or tibble columns.
+    A public key can be shared to allow others to encrypt data to be sent to you. 
+    This is particularly aimed a healthcare settings so patient data can be pseudoanonymised. 
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports:
+    dplyr,
+    knitr,
+    openssl,
+    purrr,
+    readr,
+    rlang
+RoxygenNote: 6.1.0
+VignetteBuilder: knitr
