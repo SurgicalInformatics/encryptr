@@ -1,12 +1,13 @@
 Package: encryptr
 Type: Package
-Title: Encrypt and decrypt data frame or tibble columns using the strong RSA public/private keys 
+Title: Easily encrypt and decrypt data frame or tibble columns using RSA public/private keys 
 Version: 0.1.0
 Authors@R: c(
-  person(given = "Cameron", family = "Fairfield", role = c("aut", "cre"), email = "cameron.fairfield@ed.ac.uk"),
-  person(given = "Ewen", family = "Harrison", role = c("aut"), email = "ewen.harrison@ed.ac.uk"),
+  person(given = "Cameron", family = "Fairfield", role = c("aut"), email = "cameron.fairfield@ed.ac.uk"),
   person(given = "Riinu", family = "Ots", role = c("aut")),
-  person(given = "Tom", family = "Drake", role = c("aut"))
+  person(given = "Stephen", family = "Knight", role = c("aut")),
+  person(given = "Tom", family = "Drake", role = c("aut")),
+  person(given = "Ewen", family = "Harrison", role = c("aut", "cre"), email = "ewen.harrison@ed.ac.uk")
   )
 Maintainer: Cameron Fairfield <cameron.fairfield@ed.ac.uk>
 Description: It is important to ensure that sensitive data is protected. 

@@ -4,7 +4,7 @@
 #'
 #' @param .data A vector of ciphertexts created using \code{\link{encrypt}}.
 #' @param private_key_path Character. A quoted path to an RSA private key
-#'   created using \code{\link{write_keys}}.
+#'   created using \code{\link{genkeys}}.
 #'
 #' @return A character vector.
 #' @importFrom purrr map_chr
@@ -14,7 +14,7 @@
 #' @examples
 #' \dontrun{
 #' hospital_number = c("1010761111", "2010761212")
-#' write_keys()
+#' genkeys()
 #' hospital_number_encrypted = encrypt_char(hospital_number)
 #' decrypt_char(hospital_number_encrypted)
 #' }
@@ -30,11 +30,11 @@ decrypt_char <- function(.data, private_key_path = "id_rsa"){
 #' @param .data A dataframe or tibble.
 #' @param ... The unquoted names of columns to decrypt.
 #' @param private_key_path Character. A quoted path to an RSA private key
-#'   created using \code{\link{write_keys}}.
+#'   created using \code{\link{genkeys}}.
 #' @param lookup_object An unquote name of a lookup object in the current
 #'   environment created using \code{link{encrypt}}.
 #' @param lookup_path Character. A quoted path to an RSA private key
-#'   created using \code{\link{write_keys}}.
+#'   created using \code{\link{encrypt}}.
 #'
 #' @return The original dataframe or tibble with the specified columns
 #'   decrypted.
