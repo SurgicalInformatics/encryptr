@@ -7,10 +7,10 @@
 encrypt_char(.data, public_key_path = "id_rsa.pub")
 }
 \arguments{
-\item{.data}{A character vector.}
+\item{.data}{A vector, which if not a character vector is coerced to one.}
 
 \item{public_key_path}{Character. A quoted path to an RSA public key created
-using \code{\link{write_keys}}.}
+using \code{\link{genkeys}}.}
 }
 \value{
 A vector of ciphertexts.

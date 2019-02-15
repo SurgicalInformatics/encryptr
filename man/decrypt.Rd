@@ -13,13 +13,13 @@ decrypt(.data, ..., private_key_path = "id_rsa", lookup_object = NULL,
 \item{...}{The unquoted names of columns to decrypt.}
 
 \item{private_key_path}{Character. A quoted path to an RSA private key
-created using \code{\link{write_keys}}.}
+created using \code{\link{genkeys}}.}
 
 \item{lookup_object}{An unquote name of a lookup object in the current
 environment created using \code{link{encrypt}}.}
 
 \item{lookup_path}{Character. A quoted path to an RSA private key
-created using \code{\link{write_keys}}.}
+created using \code{\link{encrypt}}.}
 }
 \value{
 The original dataframe or tibble with the specified columns

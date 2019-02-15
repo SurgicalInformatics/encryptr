@@ -10,7 +10,7 @@ decrypt_char(.data, private_key_path = "id_rsa")
 \item{.data}{A vector of ciphertexts created using \code{\link{encrypt}}.}
 
 \item{private_key_path}{Character. A quoted path to an RSA private key
-created using \code{\link{write_keys}}.}
+created using \code{\link{genkeys}}.}
 }
 \value{
 A character vector.
@@ -21,7 +21,7 @@ Not usually called directly. Password for private key required.
 \examples{
 \dontrun{
 hospital_number = c("1010761111", "2010761212")
-write_keys()
+genkeys()
 hospital_number_encrypted = encrypt_char(hospital_number)
 decrypt_char(hospital_number_encrypted)
 }

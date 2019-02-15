@@ -5,7 +5,7 @@
 \title{Encrypt a dataframe or tibble column using an RSA public/private key}
 \usage{
 encrypt(.data, ..., public_key_path = "id_rsa.pub", lookup = FALSE,
-  lookup_name = "lookup", write_lookup = FALSE)
+  lookup_name = "lookup", write_lookup = TRUE)
 }
 \arguments{
 \item{.data}{A dataframe or tibble.}
@@ -13,7 +13,7 @@ encrypt(.data, ..., public_key_path = "id_rsa.pub", lookup = FALSE,
 \item{...}{The unquoted names of columns to encrypt.}
 
 \item{public_key_path}{Character. A quoted path to an RSA public key created
-using \code{\link{write_keys}}.}
+using \code{\link{genkeys}}.}
 
 \item{lookup}{Logical. Whether to substitute the encrypted columns for
 key-column of integers.}

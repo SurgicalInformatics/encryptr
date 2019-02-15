@@ -2,13 +2,14 @@
 #'
 #' Not usually called directly.
 #'
-#' @param .data A character vector.
+#' @param .data A vector, which if not a character vector is coerced to one.
 #' @param public_key_path Character. A quoted path to an RSA public key created
-#'   using \code{\link{write_keys}}.
+#'   using \code{\link{genkeys}}.
 #'
 #' @return A vector of ciphertexts.
 #'
 #' @importFrom purrr map
+#' @importFrom dplyr mutate_if
 #' @importFrom dplyr mutate_at
 #' @importFrom dplyr vars
 #' @importFrom dplyr select
@@ -23,22 +24,19 @@
 #' }
 encrypt_char <- function(.data, public_key_path = "id_rsa.pub"){
   .data %>%
+    map(as.character) %>%
     map(charToRaw) %>%
     map(openssl::rsa_encrypt, openssl::read_pubkey(public_key_path)) %>%
     map(raw2hex) %>%
     unlist()
 }
 
-
-
-
-
 #' Encrypt a dataframe or tibble column using an RSA public/private key
 #'
 #' @param .data A dataframe or tibble.
 #' @param ... The unquoted names of columns to encrypt.
 #' @param public_key_path Character. A quoted path to an RSA public key created
-#'   using \code{\link{write_keys}}.
+#'   using \code{\link{genkeys}}.
 #' @param lookup Logical. Whether to substitute the encrypted columns for
 #'   key-column of integers.
 #' @param lookup_name Character. A quoted name to give lookup table and file.
@@ -49,7 +47,7 @@ encrypt_char <- function(.data, public_key_path = "id_rsa.pub"){
 #' @export
 #'
 encrypt <- function(.data, ..., public_key_path = "id_rsa.pub",
-                    lookup = FALSE, lookup_name = "lookup", write_lookup = FALSE){
+                    lookup = FALSE, lookup_name = "lookup", write_lookup = TRUE){
 
   # Capture column names
   .cols <- rlang::enquos(...)
@@ -73,7 +71,7 @@ encrypt <- function(.data, ..., public_key_path = "id_rsa.pub",
     assign(rlang::quo_name(rlang::enquo(lookup_name)), df.lookup, envir=.GlobalEnv)
     cat("Lookup table object created with name '", lookup_name, "'\n", sep = "")
 
-    if(write_lookup){
+    if(lookup & write_lookup){
       lookup_file_name <- paste0(lookup_name, ".csv")
       if(file.exists(lookup_file_name)) {
         stop("Lookup file with this name already exists. Delete or choose a new name.")
