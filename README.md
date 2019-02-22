@@ -1,3 +1,7 @@
+# [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/finalfit)](https://cran.r-project.org/package=finalfit)
+# [![CRAN_Status_Badge](https://cranlogs.r-pkg.org/badges/finalfit)](https://cran.r-project.org/package=finalfit)
+[![TravisCRAN_Status_Badge](https://travis-ci.com/SurgicalInformatics/encryptr.svg?branch=master)](https://travis-ci.com/SurgicalInformatics/encryptr)
+
 # encryptr
 
 ## Easily encrypt and decrypt data frame or tibble columns using RSA public/private keys
