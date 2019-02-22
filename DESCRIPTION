@@ -18,6 +18,8 @@ Description: It is important to ensure that sensitive data is protected.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+BugReports: https://github.com/SurgicalInformatics/encryptr/issues
+URL: https://github.com/SurgicalInformatics/encryptr
 Imports:
     dplyr,
     knitr,

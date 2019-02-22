@@ -12,6 +12,7 @@ external.packages:
     jsonlite
     base64enc
     rmarkdown
+    pkgdown
 local.repos: 
 load.external.packages.on.startup: TRUE
 ignored.packages: 
