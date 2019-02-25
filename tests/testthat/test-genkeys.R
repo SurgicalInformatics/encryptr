@@ -29,8 +29,10 @@ test_with_dir("genkeys() defaults create id_rsa and id_rsa.pub", {
 })
 
 test_with_dir("genkeys() errors if files already exist", {
-  genkeys(password = NULL)
-  expect_error(genkeys(password = NULL))
+  file.create("id_rsa.pub")
+  expect_error(genkeys(password = NULL), regexp = "Public key .+ exists")
+  file.create("id_rsa")
+  expect_error(genkeys(password = NULL), regexp = "Private key .+ exists")
 })
 
 test_with_dir("genkeys() creates keys with requested names", {
