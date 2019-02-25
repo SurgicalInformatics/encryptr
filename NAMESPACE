@@ -2,9 +2,9 @@
 
 export("%>%")
 export(decrypt)
-export(decrypt_char)
+export(decrypt_vec)
 export(encrypt)
-export(encrypt_char)
+export(encrypt_vec)
 export(genkeys)
 importFrom(dplyr,"%>%")
 importFrom(dplyr,bind_cols)

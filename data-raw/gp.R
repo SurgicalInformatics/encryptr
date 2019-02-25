@@ -14,4 +14,4 @@ gp <- read_csv("data-raw/scotprac.csv", col_types = list(
   col_character(),
   col_double())
 )
-save(gp, file = "data/gp.rda")
+save(gp, file = "data/gp.rda", compress = TRUE)
