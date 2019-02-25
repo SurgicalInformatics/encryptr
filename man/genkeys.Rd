@@ -4,7 +4,9 @@
 \alias{genkeys}
 \title{Create and write RSA private and public keys}
 \usage{
-genkeys(private_key_name = "id_rsa", public_key_name = "id_rsa.pub")
+genkeys(private_key_name = "id_rsa",
+  public_key_name = paste0(private_key_name, ".pub"),
+  password = ask_pass())
 }
 \arguments{
 \item{private_key_name}{Character string. Do not change default unless good
@@ -12,6 +14,9 @@ reason.}
 
 \item{public_key_name}{Character string. Do not change default unless good
 reason.}
+
+\item{password}{Password for private key. This password cannot be recovered
+if lost, so please store the password in a safe location.}
 }
 \value{
 Two files containing the public key and encrypted private key are

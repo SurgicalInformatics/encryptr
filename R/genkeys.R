@@ -10,6 +10,8 @@
 #'   reason.
 #' @param public_key_name Character string. Do not change default unless good
 #'   reason.
+#' @param password Password for private key. This password cannot be recovered
+#'   if lost, so please store the password in a safe location.
 #'
 #' @return Two files containing the public key and encrypted private key are
 #'   written to the working directory.
@@ -20,7 +22,8 @@
 #' @examples
 #' genkeys()
 genkeys <- function(private_key_name = "id_rsa",
-                    public_key_name = paste0(private_key_name, ".pub")){
+                    public_key_name = paste0(private_key_name, ".pub"),
+                    password = ask_pass()){
   if(file.exists(private_key_name)){
     stop("Private key file with this name already exists. Delete it or change file name.")
   }
@@ -31,10 +34,14 @@ genkeys <- function(private_key_name = "id_rsa",
   key <- openssl::rsa_keygen()
   pubkey <- as.list(key)$pubkey
 
-  openssl::write_pem(key,
-                     private_key_name,
-                     password = openssl::askpass(prompt = "Please choose a password for your private key.
-                                                 This password CANNOT be recovered if lost.
-                                                 Please store the password in a safe location."))
+  openssl::write_pem(key, private_key_name, password = password)
   openssl::write_pem(pubkey, public_key_name)
+}
+
+ask_pass <- function() {
+  askpass::askpass(prompt = paste(
+    "Please choose a password for your private key.",
+    "This password CANNOT be recovered if lost.",
+    "Please store the password in a safe location.",
+    sep = "\n"))
 }
