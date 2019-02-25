@@ -27,14 +27,16 @@ genkeys <- function(private_key_name = "id_rsa", public_key_name = "id_rsa.pub")
     stop("Public key file with this name already exists. Delete it or change file name.")
   }
 
+  if(identical(private_key_name, public_key_name)){
+    stop("Private and public key files cannot have the same name.")
+  }
+
   key <- openssl::rsa_keygen()
   pubkey <- as.list(key)$pubkey
 
   openssl::write_pem(key,
-                     "id_rsa",
-                     password = openssl::askpass(prompt = "Please choose a password for your private key.
-                                                 This password CANNOT be recovered if lost.
-                                                 Please store the password in a safe location."))
+                     private_key_name,
+                     password = openssl::askpass(prompt = "Please choose a password for your private key.\nThis password CANNOT be recovered if lost.\nPlease store the password in a safe location."))
   openssl::write_pem(pubkey,
-                     "id_rsa.pub")
+                     public_key_name)
 }

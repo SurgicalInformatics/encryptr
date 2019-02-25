@@ -39,7 +39,16 @@ decrypt_vec <- function(.data, private_key_path = "id_rsa"){
 #' @return The original dataframe or tibble with the specified columns
 #'   decrypted.
 #' @export
+#' @examples
+#' \dontrun{
+#' library(dplyr)
+#' gp_encrypt = gp %>%
+#'   select(-c(name, address1, address2, address3)) %>%
+#'   encrypt(postcode, telephone)
 #'
+#' gp_encrypt %>%
+#'   decrypt(postcode, telephone)
+#' }
 decrypt <- function(.data, ..., private_key_path = "id_rsa",
                     lookup_object = NULL,
                     lookup_path = NULL){

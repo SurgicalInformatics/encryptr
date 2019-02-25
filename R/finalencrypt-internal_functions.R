@@ -34,3 +34,12 @@ hex2raw <- function(.data){
 #' @usage lhs \%>\% rhs
 #' @export
 NULL
+
+#' Assign
+#'
+#' @param pos
+#'
+#' @keywords internal
+assign_to_global <- function(key, val, pos){
+  assign(key, val, envir=as.environment(pos))
+}
