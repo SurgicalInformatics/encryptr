@@ -19,7 +19,8 @@
 #'
 #' @examples
 #' genkeys()
-genkeys <- function(private_key_name = "id_rsa", public_key_name = "id_rsa.pub"){
+genkeys <- function(private_key_name = "id_rsa",
+                    public_key_name = paste0(private_key_name, ".pub")){
   if(file.exists(private_key_name)){
     stop("Private key file with this name already exists. Delete it or change file name.")
   }
