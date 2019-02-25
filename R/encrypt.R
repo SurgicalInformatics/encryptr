@@ -20,9 +20,9 @@
 #' @examples
 #' \dontrun{
 #' hospital_number = c("1010761111", "2010761212")
-#' encrypt_char(hospital_number)
+#' encrypt_vec(hospital_number)
 #' }
-encrypt_char <- function(.data, public_key_path = "id_rsa.pub"){
+encrypt_vec <- function(.data, public_key_path = "id_rsa.pub"){
   .data %>%
     map(as.character) %>%
     map(charToRaw) %>%
@@ -54,7 +54,7 @@ encrypt <- function(.data, ..., public_key_path = "id_rsa.pub",
 
   # Encrypt columns
   df.encrypt <- .data %>%
-    mutate_at(vars(!!! .cols), encrypt_char, public_key_path)
+    mutate_at(vars(!!! .cols), encrypt_vec, public_key_path)
 
   if(!lookup){
     return(df.encrypt)

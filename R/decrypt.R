@@ -16,9 +16,9 @@
 #' hospital_number = c("1010761111", "2010761212")
 #' genkeys()
 #' hospital_number_encrypted = encrypt_char(hospital_number)
-#' decrypt_char(hospital_number_encrypted)
+#' decrypt_vec(hospital_number_encrypted)
 #' }
-decrypt_char <- function(.data, private_key_path = "id_rsa"){
+decrypt_vec <- function(.data, private_key_path = "id_rsa"){
   .data %>%
     map(hex2raw) %>%
     map(openssl::rsa_decrypt, openssl::read_key(private_key_path)) %>%
@@ -47,17 +47,17 @@ decrypt <- function(.data, ..., private_key_path = "id_rsa",
 
   if(is.null(lookup_object) && is.null(lookup_path)){
     .data %>%
-      mutate_at(dplyr::vars(!!! .cols), decrypt_char, private_key_path)
+      mutate_at(dplyr::vars(!!! .cols), decrypt_vec, private_key_path)
 
   } else if(!is.null(lookup_object)) {
     lookup_object %>%
       right_join(.data, by = "key") %>%
-      mutate_at(vars(!!! .cols), decrypt_char, private_key_path) %>%
+      mutate_at(vars(!!! .cols), decrypt_vec, private_key_path) %>%
       select(-key)
   } else if(!is.null(lookup_path)){
     readr::read_csv(lookup_path, col_types = readr::cols()) %>%
       right_join(.data, by = "key") %>%
-      mutate_at(vars(!!! .cols), decrypt_char, private_key_path) %>%
+      mutate_at(vars(!!! .cols), decrypt_vec, private_key_path) %>%
       select(-key)
   }
 }
