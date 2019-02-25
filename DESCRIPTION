@@ -21,6 +21,7 @@ LazyData: true
 BugReports: https://github.com/SurgicalInformatics/encryptr/issues
 URL: https://github.com/SurgicalInformatics/encryptr
 Imports:
+    askpass,
     dplyr,
     knitr,
     openssl,
