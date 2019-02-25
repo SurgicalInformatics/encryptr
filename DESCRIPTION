@@ -14,7 +14,7 @@ Description: It is important to ensure that sensitive data is protected.
     This straightforward package is aimed at the end-user. 
     Strong RSA encryption using a public/private key pair is used to encrypt data frame or tibble columns.
     A public key can be shared to allow others to encrypt data to be sent to you. 
-    This is particularly aimed a healthcare settings so patient data can be pseudoanonymised. 
+    This is particularly aimed a healthcare settings so patient data can be pseudonymised. 
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -28,4 +28,3 @@ Imports:
     readr,
     rlang
 RoxygenNote: 6.1.0
-VignetteBuilder: knitr
