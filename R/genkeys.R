@@ -37,7 +37,11 @@ genkeys <- function(private_key_name = "id_rsa",
 
   openssl::write_pem(key,
                      private_key_name,
-                     password = openssl::askpass(prompt = "Please choose a password for your private key.\nThis password CANNOT be recovered if lost.\nPlease store the password in a safe location."))
+                     password = openssl::askpass(prompt = paste0(
+                       "Please choose a password for your private key.",
+                       "This password CANNOT be recovered if lost.",
+                       "Please store the password in a safe location.", sep = "\n"))
+  )
   openssl::write_pem(pubkey,
                      public_key_name)
 }
