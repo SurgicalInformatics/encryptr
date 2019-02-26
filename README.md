@@ -17,6 +17,11 @@ You can install `encryptr` from GitHub:
 devtools::install_github("SurgicalInformatics/encryptr")
 ```
 
+## Documentation
+
+Documentation is maintained at [encrypt-r.org](https://encrypt-r.org).
+
+
 ## Getting started
 
 The basis of RSA encryption is a public/private key pair and is the method used of many modern encryption applications. The public key can be shared and is used to encrypt the information.
