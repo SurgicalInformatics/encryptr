@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Encrypt a dataframe or tibble column using an RSA public/private key — encrypt • encryptr</title>
+<title>Assign — assign_to_global • encryptr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Encrypt a dataframe or tibble column using an RSA public/private key — encrypt" />
+<meta property="og:title" content="Assign — assign_to_global" />
 
-<meta property="og:description" content="Encrypt a dataframe or tibble column using an RSA public/private key" />
+<meta property="og:description" content="Assign" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -100,75 +100,35 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Encrypt a dataframe or tibble column using an RSA public/private key</h1>
-    <small class="dont-index">Source: <a href='https://github.com/SurgicalInformatics/encryptr/blob/master/R/encrypt.R'><code>R/encrypt.R</code></a></small>
-    <div class="hidden name"><code>encrypt.Rd</code></div>
+    <h1>Assign</h1>
+    <small class="dont-index">Source: <a href='https://github.com/SurgicalInformatics/encryptr/blob/master/R/finalencrypt-internal_functions.R'><code>R/finalencrypt-internal_functions.R</code></a></small>
+    <div class="hidden name"><code>assign_to_global.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Encrypt a dataframe or tibble column using an RSA public/private key</p>
+    <p>Assign</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>encrypt</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>public_key_path</span> <span class='kw'>=</span> <span class='st'>"id_rsa.pub"</span>, <span class='kw'>lookup</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>lookup_name</span> <span class='kw'>=</span> <span class='st'>"lookup"</span>, <span class='kw'>write_lookup</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>assign_to_global</span>(<span class='no'>key</span>, <span class='no'>val</span>, <span class='no'>pos</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>.data</th>
-      <td><p>A dataframe or tibble.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>The unquoted names of columns to encrypt.</p></td>
-    </tr>
-    <tr>
-      <th>public_key_path</th>
-      <td><p>Character. A quoted path to an RSA public key created
-using <code><a href='genkeys.html'>genkeys</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>lookup</th>
-      <td><p>Logical. Whether to substitute the encrypted columns for
-key-column of integers.</p></td>
-    </tr>
-    <tr>
-      <th>lookup_name</th>
-      <td><p>Character. A quoted name to give lookup table and file.</p></td>
-    </tr>
-    <tr>
-      <th>write_lookup</th>
-      <td><p>Logical. Write a lookup table as a .csv file.</p></td>
+      <th>pos</th>
+      <td></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The original dataframe or tibble with the specified columns
-  encrypted.</p>
-    
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>library</span>(<span class='no'>dplyr</span>)
-<span class='fu'><a href='genkeys.html'>genkeys</a></span>()
-<span class='no'>gp_encrypt</span> <span class='kw'>=</span> <span class='no'>gp</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(-<span class='fu'>c</span>(<span class='no'>name</span>, <span class='no'>address1</span>, <span class='no'>address2</span>, <span class='no'>address3</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'>encrypt</span>(<span class='no'>postcode</span>, <span class='no'>telephone</span>)
-<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+                </ul>
 
   </div>
 </div>

@@ -81,6 +81,9 @@ overwritten, any data encrypted with the public key cannot be decrypted." />
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -118,7 +121,8 @@ overwritten, any data encrypted with the public key cannot be decrypted.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>genkeys</span>(<span class='kw'>private_key_name</span> <span class='kw'>=</span> <span class='st'>"id_rsa"</span>, <span class='kw'>public_key_name</span> <span class='kw'>=</span> <span class='st'>"id_rsa.pub"</span>)</pre>
+    <pre class="usage"><span class='fu'>genkeys</span>(<span class='kw'>private_key_name</span> <span class='kw'>=</span> <span class='st'>"id_rsa"</span>,
+  <span class='kw'>public_key_name</span> <span class='kw'>=</span> <span class='fu'>paste0</span>(<span class='no'>private_key_name</span>, <span class='st'>".pub"</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

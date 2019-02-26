@@ -13,6 +13,7 @@ external.packages:
     base64enc
     rmarkdown
     pkgdown
+    testthat
 local.repos: 
 load.external.packages.on.startup: TRUE
 ignored.packages: 
