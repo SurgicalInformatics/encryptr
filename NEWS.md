@@ -1,6 +1,7 @@
 # encryptr 0.1.1
 
 * `genkeys()` bug fixes and rework. #1 #2
+* `encrypt()` errors if .csv immediately, not after encryption done
 
 
 # encryptr 0.1.0

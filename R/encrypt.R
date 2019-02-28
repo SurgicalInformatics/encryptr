@@ -56,6 +56,14 @@ encrypt_vec <- function(.data, public_key_path = "id_rsa.pub"){
 encrypt <- function(.data, ..., public_key_path = "id_rsa.pub",
                     lookup = FALSE, lookup_name = "lookup", write_lookup = TRUE){
 
+  # Check for .csv file and don't overwrite
+  if(lookup & write_lookup){
+    lookup_file_name <- paste0(lookup_name, ".csv")
+    if(file.exists(lookup_file_name)) {
+      stop("Lookup file with this name already exists. Delete or choose a new name.")
+    }
+  }
+
   # Capture column names
   .cols <- rlang::enquos(...)
 
@@ -80,10 +88,6 @@ encrypt <- function(.data, ..., public_key_path = "id_rsa.pub",
     cat("Lookup table object created with name '", lookup_name, "'\n", sep = "")
 
     if(lookup & write_lookup){
-      lookup_file_name <- paste0(lookup_name, ".csv")
-      if(file.exists(lookup_file_name)) {
-        stop("Lookup file with this name already exists. Delete or choose a new name.")
-      }
       readr::write_csv(df.lookup, lookup_file_name)
       cat("Lookup table written to file with name '", lookup_file_name, "'\n",
           sep = "")
