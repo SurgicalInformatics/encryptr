@@ -18,9 +18,14 @@
 #' @seealso encrypt decrypt
 #'
 #' @examples
-#' genkeys()
-genkeys <- function(private_key_name = "id_rsa",
+#' genkeys(private_key_name = "tempdir/id_rsa")
+#' # Write to tempdir is for CRAN example only
+#' # genkeys(private_key_name = "id_rsa")
+genkeys <- function(private_key_name = "",
                     public_key_name = paste0(private_key_name, ".pub")){
+  if(private_key_name == ""){
+    stop("Provide a private key name, e.g. private_key_name = 'id_rsa'")
+  }
   if(file.exists(private_key_name)){
     stop("Private key file with this name already exists. Delete it or change file name.")
   }
@@ -37,7 +42,7 @@ genkeys <- function(private_key_name = "id_rsa",
 
   openssl::write_pem(key,
                      private_key_name,
-                     password = openssl::askpass(prompt = paste0(
+                     password = openssl::askpass(prompt = paste(
                        "Please choose a password for your private key.",
                        "This password CANNOT be recovered if lost.",
                        "Please store the password in a safe location.", sep = "\n"))
