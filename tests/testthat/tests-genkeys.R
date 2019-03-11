@@ -23,13 +23,13 @@ test_with_dir <- function(desc, ...){
 }
 
 test_with_dir("genkeys() defaults create id_rsa and id_rsa.pub", {
-  genkeys()
+  genkeys(private_key_name = 'id_rsa')
   expect_true(file.exists("id_rsa"))
   expect_true(file.exists("id_rsa.pub"))
 })
 
 test_with_dir("genkeys() errors if files already exist", {
-  genkeys()
+  genkeys(private_key_name = 'id_rsa')
   expect_error(genkeys())
 })
 

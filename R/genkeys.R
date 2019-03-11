@@ -18,9 +18,12 @@
 #' @seealso encrypt decrypt
 #'
 #' @examples
-#' genkeys(private_key_name = "tempdir/id_rsa")
-#' # Write to tempdir is for CRAN example only
+#' # Use this example:
 #' # genkeys(private_key_name = "id_rsa")
+#'
+#' # For CRAN purposes and testing
+#' dir = tempdir()
+#' genkeys(private_key_name = paste0(dir, "/id_rsa"))
 genkeys <- function(private_key_name = "",
                     public_key_name = paste0(private_key_name, ".pub")){
   if(private_key_name == ""){

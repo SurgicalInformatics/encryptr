@@ -32,7 +32,7 @@ Encrypt a dataframe or tibble column using an RSA public/private key
 \examples{
 \dontrun{
 library(dplyr)
-genkeys()
+genkeys(private_key_name = "id_rsa")
 gp_encrypt = gp \%>\%
   select(-c(name, address1, address2, address3)) \%>\%
   encrypt(postcode, telephone)
