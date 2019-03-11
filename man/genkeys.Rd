@@ -28,7 +28,7 @@ overwritten, any data encrypted with the public key cannot be decrypted.
 }
 \examples{
 # Use this example:
-# genkeys(private_key_name = "id_rsa")
+# genkeys("id_rsa")
 
 # For CRAN purposes and testing
 dir = tempdir()

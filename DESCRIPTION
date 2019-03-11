@@ -29,4 +29,5 @@ Imports:
     rlang
 RoxygenNote: 6.1.0
 Suggests:
-    testthat
+    testthat,
+    withr

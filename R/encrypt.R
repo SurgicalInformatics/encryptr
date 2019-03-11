@@ -48,7 +48,7 @@ encrypt_vec <- function(.data, public_key_path = "id_rsa.pub"){
 #' @examples
 #' \dontrun{
 #' library(dplyr)
-#' genkeys(private_key_name = "id_rsa")
+#' genkeys("id_rsa")
 #' gp_encrypt = gp %>%
 #'   select(-c(name, address1, address2, address3)) %>%
 #'   encrypt(postcode, telephone)
