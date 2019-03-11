@@ -1,7 +1,7 @@
 Package: encryptr
 Type: Package
 Title: Easily Encrypt and Decrypt Data Frame or Tibble Columns using RSA Public/Private Keys 
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: c(
   person(given = "Cameron", family = "Fairfield", role = c("aut"), email = "cameron.fairfield@ed.ac.uk"),
   person(given = "Riinu", family = "Ots", role = c("aut")),

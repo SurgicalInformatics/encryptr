@@ -48,7 +48,7 @@ encrypt_vec <- function(.data, public_key_path = "id_rsa.pub"){
 #' @examples
 #' \dontrun{
 #' library(dplyr)
-#' genkeys()
+#' genkeys(private_key_name = "id_rsa")
 #' gp_encrypt = gp %>%
 #'   select(-c(name, address1, address2, address3)) %>%
 #'   encrypt(postcode, telephone)
@@ -84,7 +84,6 @@ encrypt <- function(.data, ..., public_key_path = "id_rsa.pub",
 
     # Assign lookup table with lookup_name
     do.call(assign_to_global, list(key = rlang::quo_name(rlang::enquo(lookup_name)), val = df.lookup, pos = 1L))
-    #assign(rlang::quo_name(rlang::enquo(lookup_name)), df.lookup, envir=.GlobalEnv)
     cat("Lookup table object created with name '", lookup_name, "'\n", sep = "")
 
     if(lookup & write_lookup){
