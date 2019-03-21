@@ -14,7 +14,7 @@
 #' @examples
 #' \dontrun{
 #' hospital_number = c("1010761111", "2010761212")
-#' genkeys()
+#' genkeys(file.path(tempdir(), "id_rsa") # temp directory for testing only
 #' hospital_number_encrypted = encrypt_char(hospital_number)
 #' decrypt_vec(hospital_number_encrypted)
 #' }

@@ -18,17 +18,14 @@
 #' @seealso encrypt decrypt
 #'
 #' @examples
-#' # Use this example:
-#' # genkeys("id_rsa")
+#' # Function can be used as this:
+#' # genkeys()
 #'
 #' # For CRAN purposes and testing
-#' dir = tempdir()
-#' genkeys(private_key_name = paste0(dir, "/id_rsa"))
-genkeys <- function(private_key_name = "",
+#' genkeys(file.path(tempdir(), "id_rsa"))
+#'
+genkeys <- function(private_key_name = "id_rsa",
                     public_key_name = paste0(private_key_name, ".pub")){
-  if(private_key_name == ""){
-    stop("Provide a private key name, e.g. private_key_name = 'id_rsa'")
-  }
   if(file.exists(private_key_name)){
     stop("Private key file with this name already exists. Delete it or change file name.")
   }

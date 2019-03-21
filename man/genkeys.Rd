@@ -4,7 +4,7 @@
 \alias{genkeys}
 \title{Create and write RSA private and public keys}
 \usage{
-genkeys(private_key_name = "",
+genkeys(private_key_name = "id_rsa",
   public_key_name = paste0(private_key_name, ".pub"))
 }
 \arguments{
@@ -27,12 +27,12 @@ This password cannot be recovered if lost. If the file is lost or
 overwritten, any data encrypted with the public key cannot be decrypted.
 }
 \examples{
-# Use this example:
-# genkeys("id_rsa")
+# Function can be used as this:
+# genkeys()
 
 # For CRAN purposes and testing
-dir = tempdir()
-genkeys(private_key_name = paste0(dir, "/id_rsa"))
+genkeys(file.path(tempdir(), "id_rsa"))
+
 }
 \seealso{
 encrypt decrypt

@@ -121,7 +121,7 @@ overwritten, any data encrypted with the public key cannot be decrypted.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>genkeys</span>(<span class='kw'>private_key_name</span> <span class='kw'>=</span> <span class='st'>""</span>,
+    <pre class="usage"><span class='fu'>genkeys</span>(<span class='kw'>private_key_name</span> <span class='kw'>=</span> <span class='st'>"id_rsa"</span>,
   <span class='kw'>public_key_name</span> <span class='kw'>=</span> <span class='fu'>paste0</span>(<span class='no'>private_key_name</span>, <span class='st'>".pub"</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -150,12 +150,11 @@ reason.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Use this example:</span>
-<span class='co'># genkeys("id_rsa")</span>
+    <pre class="examples"><div class='input'><span class='co'># Function can be used as this:</span>
+<span class='co'># genkeys()</span>
 
 <span class='co'># For CRAN purposes and testing</span>
-<span class='no'>dir</span> <span class='kw'>=</span> <span class='fu'>tempdir</span>()
-<span class='fu'>genkeys</span>(<span class='kw'>private_key_name</span> <span class='kw'>=</span> <span class='fu'>paste0</span>(<span class='no'>dir</span>, <span class='st'>"/id_rsa"</span>))</div></pre>
+<span class='fu'>genkeys</span>(<span class='fu'>file.path</span>(<span class='fu'>tempdir</span>(), <span class='st'>"id_rsa"</span>))</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
