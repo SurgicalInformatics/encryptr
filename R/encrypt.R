@@ -62,6 +62,10 @@ encrypt_vec <- function(.data, public_key_path = "id_rsa.pub"){
 encrypt <- function(.data, ..., public_key_path = "id_rsa.pub",
                     lookup = FALSE, lookup_name = "lookup", write_lookup = TRUE){
 
+  if(!file.exists(public_key_path)) {
+    stop("Public key cannot be found.")
+  }
+
   # Check for .csv file and don't overwrite
   if(lookup & write_lookup){
     lookup_file_name <- paste0(lookup_name, ".csv")

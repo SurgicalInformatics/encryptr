@@ -62,6 +62,10 @@ decrypt <- function(.data, ..., private_key_path = "id_rsa",
                     lookup_path = NULL){
   .cols <- rlang::enquos(...)
 
+  if(!file.exists(private_key_path)) {
+    stop("Private key cannot be found.")
+  }
+
   if(is.null(lookup_object) && is.null(lookup_path)){
     .data %>%
       mutate_at(dplyr::vars(!!! .cols), decrypt_vec, private_key_path)

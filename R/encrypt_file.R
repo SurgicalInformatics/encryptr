@@ -13,9 +13,9 @@
 #' referred to as an envelope.
 #'
 #' @param .path Quoted path to file to encrypt.
+#' @param crypt_file_name Optional new name to give encrypted file. Must end with ".encrypter.bin".
 #' @param public_key_path Quoted path to public key, created with
 #'   \code{\link{genkeys}}.
-#' @param crypt_file_name Optional new name to give encrypted file. Must end with ".encrypter.bin".
 #'
 #' @return The encrypted file is saved.
 #' @export
@@ -35,9 +35,13 @@
 #' write.csv(gp, file.path(temp_dir, "gp.csv"))
 #' encrypt_file(file.path(temp_dir, "gp.csv"), public_key_path = file.path(temp_dir, "id_rsa.pub"))
 #' }
-encrypt_file <- function(.path, public_key_path = "id_rsa.pub", crypt_file_name = NULL) {
+encrypt_file <- function(.path, crypt_file_name = NULL, public_key_path = "id_rsa.pub") {
   if (!file.exists(.path)) {
     stop("File for encryption cannot be found.")
+  }
+
+  if(!file.exists(public_key_path)) {
+    stop("Public key cannot be found.")
   }
 
   if(is.null(crypt_file_name)){

@@ -4,15 +4,15 @@
 \alias{decrypt_file}
 \title{Decrypt a file}
 \usage{
-decrypt_file(.path, private_key_path = "id_rsa", file_name = NULL)
+decrypt_file(.path, file_name = NULL, private_key_path = "id_rsa")
 }
 \arguments{
 \item{.path}{Quoted path to file to encrypt.}
 
+\item{file_name}{Optional new name for unencrypted file.}
+
 \item{private_key_path}{Quoted path to private key, created with
 \code{\link{genkeys}}.}
-
-\item{file_name}{Optional new name for unencrypted file.}
 }
 \value{
 The decrypted file is saved.
@@ -35,5 +35,5 @@ write.csv(gp, file.path(temp_dir, "gp.csv"))
 encrypt_file(file.path(temp_dir, "gp.csv"), public_key_path = file.path(temp_dir, "id_rsa4.pub"))
 decrypt_file(file.path(temp_dir, "gp.csv.encryptr.bin"),
   private_key_path = file.path(temp_dir, "id_rsa4"),
-  file_name = "gp2.csv")
+  file_name = "file.path(temp_dir, gp2.csv)")
 }

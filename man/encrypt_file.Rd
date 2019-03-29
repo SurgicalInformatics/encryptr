@@ -4,16 +4,16 @@
 \alias{encrypt_file}
 \title{Encrypt a file}
 \usage{
-encrypt_file(.path, public_key_path = "id_rsa.pub",
-  crypt_file_name = NULL)
+encrypt_file(.path, crypt_file_name = NULL,
+  public_key_path = "id_rsa.pub")
 }
 \arguments{
 \item{.path}{Quoted path to file to encrypt.}
 
+\item{crypt_file_name}{Optional new name to give encrypted file. Must end with ".encrypter.bin".}
+
 \item{public_key_path}{Quoted path to public key, created with
 \code{\link{genkeys}}.}
-
-\item{crypt_file_name}{Optional new name to give encrypted file. Must end with ".encrypter.bin".}
 }
 \value{
 The encrypted file is saved.
