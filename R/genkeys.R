@@ -22,7 +22,8 @@
 #' # genkeys()
 #'
 #' # For CRAN purposes and testing
-#' genkeys(file.path(tempdir(), "id_rsa"))
+#' temp_dir = tempdir()
+#' genkeys(file.path(temp_dir, "id_rsa3"))
 #'
 genkeys <- function(private_key_name = "id_rsa",
                     public_key_name = paste0(private_key_name, ".pub")){

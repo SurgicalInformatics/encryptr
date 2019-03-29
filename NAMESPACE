@@ -2,8 +2,10 @@
 
 export("%>%")
 export(decrypt)
+export(decrypt_file)
 export(decrypt_vec)
 export(encrypt)
+export(encrypt_file)
 export(encrypt_vec)
 export(genkeys)
 importFrom(dplyr,"%>%")

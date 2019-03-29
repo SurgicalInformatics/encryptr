@@ -2,13 +2,13 @@
 % Please edit documentation in R/encrypt.R
 \name{encrypt}
 \alias{encrypt}
-\title{Encrypt a dataframe or tibble column using an RSA public/private key}
+\title{Encrypt a data frame or tibble column using an RSA public/private key}
 \usage{
 encrypt(.data, ..., public_key_path = "id_rsa.pub", lookup = FALSE,
   lookup_name = "lookup", write_lookup = TRUE)
 }
 \arguments{
-\item{.data}{A dataframe or tibble.}
+\item{.data}{A data frame or tibble.}
 
 \item{...}{The unquoted names of columns to encrypt.}
 
@@ -27,14 +27,20 @@ The original dataframe or tibble with the specified columns
   encrypted.
 }
 \description{
-Encrypt a dataframe or tibble column using an RSA public/private key
+Encrypt a data frame or tibble column using an RSA public/private key
 }
 \examples{
-\dontrun{
+# This will run:
+# genkeys()
+# gp_encrypt = gp \%>\%
+#   select(-c(name, address1, address2, address3)) \%>\%
+#   encrypt(postcode, telephone)
+
+# For CRAN and testing:
 library(dplyr)
-genkeys(file.path(tempdir(), "id_rsa") # temp directory for testing only
+temp_dir = tempdir()
+genkeys(file.path(temp_dir, "id_rsa2")) # temp directory for testing only
 gp_encrypt = gp \%>\%
   select(-c(name, address1, address2, address3)) \%>\%
-  encrypt(postcode, telephone)
-}
+  encrypt(postcode, telephone, public_key_path = file.path(temp_dir, "id_rsa2.pub"))
 }

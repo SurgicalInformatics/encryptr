@@ -25,9 +25,9 @@ decrypt_vec <- function(.data, private_key_path = "id_rsa"){
     map_chr(rawToChar)
 }
 
-#' Decrypt a dataframe or tibble column using an RSA public/private key
+#' Decrypt a data frame or tibble column using an RSA public/private key
 #'
-#' @param .data A dataframe or tibble.
+#' @param .data A data frame or tibble.
 #' @param ... The unquoted names of columns to decrypt.
 #' @param private_key_path Character. A quoted path to an RSA private key
 #'   created using \code{\link{genkeys}}.
@@ -40,15 +40,23 @@ decrypt_vec <- function(.data, private_key_path = "id_rsa"){
 #'   decrypted.
 #' @export
 #' @examples
-#' \dontrun{
+#' #' This will run:
+#' # genkeys()
+#' # gp_encrypt = gp %>%
+#' #   select(-c(name, address1, address2, address3)) %>%
+#' #   encrypt(postcode, telephone)
+#' # gp_encrypt %>%
+#' #   decrypt(postcode, telephone)
+#'
+#' # For CRAN and testing:
 #' library(dplyr)
+#' temp_dir = tempdir()
+#' genkeys(file.path(temp_dir, "id_rsa")) # temp directory for testing only
 #' gp_encrypt = gp %>%
 #'   select(-c(name, address1, address2, address3)) %>%
-#'   encrypt(postcode, telephone)
-#'
-#' gp_encrypt %>%
-#'   decrypt(postcode, telephone)
-#' }
+#'   encrypt(postcode, telephone, public_key_path = file.path(temp_dir, "id_rsa.pub"))
+#'   gp_encrypt %>%
+#'   decrypt(postcode, telephone, private_key_path = file.path(temp_dir, "id_rsa"))
 decrypt <- function(.data, ..., private_key_path = "id_rsa",
                     lookup_object = NULL,
                     lookup_path = NULL){
