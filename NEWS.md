@@ -1,3 +1,8 @@
+# encryptr 0.1.3
+
+* File encryption include, `encrypt_file()` and `decrypt_file()`. 
+
+
 # encryptr 0.1.2
 
 * CRAN requirements fulfilled.

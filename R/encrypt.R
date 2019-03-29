@@ -31,9 +31,9 @@ encrypt_vec <- function(.data, public_key_path = "id_rsa.pub"){
     unlist()
 }
 
-#' Encrypt a dataframe or tibble column using an RSA public/private key
+#' Encrypt a data frame or tibble column using an RSA public/private key
 #'
-#' @param .data A dataframe or tibble.
+#' @param .data A data frame or tibble.
 #' @param ... The unquoted names of columns to encrypt.
 #' @param public_key_path Character. A quoted path to an RSA public key created
 #'   using \code{\link{genkeys}}.
@@ -46,13 +46,19 @@ encrypt_vec <- function(.data, public_key_path = "id_rsa.pub"){
 #'   encrypted.
 #' @export
 #' @examples
-#' \dontrun{
+#' # This will run:
+#' # genkeys()
+#' # gp_encrypt = gp %>%
+#' #   select(-c(name, address1, address2, address3)) %>%
+#' #   encrypt(postcode, telephone)
+#'
+#' # For CRAN and testing:
 #' library(dplyr)
-#' genkeys(file.path(tempdir(), "id_rsa") # temp directory for testing only
+#' temp_dir = tempdir()
+#' genkeys(file.path(temp_dir, "id_rsa2")) # temp directory for testing only
 #' gp_encrypt = gp %>%
 #'   select(-c(name, address1, address2, address3)) %>%
-#'   encrypt(postcode, telephone)
-#' }
+#'   encrypt(postcode, telephone, public_key_path = file.path(temp_dir, "id_rsa2.pub"))
 encrypt <- function(.data, ..., public_key_path = "id_rsa.pub",
                     lookup = FALSE, lookup_name = "lookup", write_lookup = TRUE){
 

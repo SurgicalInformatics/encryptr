@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Decrypt a dataframe or tibble column using an RSA public/private key — decrypt • encryptr</title>
+<title>Decrypt a data frame or tibble column using an RSA public/private key — decrypt • encryptr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Decrypt a dataframe or tibble column using an RSA public/private key — decrypt" />
+<meta property="og:title" content="Decrypt a data frame or tibble column using an RSA public/private key — decrypt" />
 
-<meta property="og:description" content="Decrypt a dataframe or tibble column using an RSA public/private key" />
+<meta property="og:description" content="Decrypt a data frame or tibble column using an RSA public/private key" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -61,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">encryptr</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.3</span>
       </span>
     </div>
 
@@ -100,14 +100,14 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Decrypt a dataframe or tibble column using an RSA public/private key</h1>
+    <h1>Decrypt a data frame or tibble column using an RSA public/private key</h1>
     <small class="dont-index">Source: <a href='https://github.com/SurgicalInformatics/encryptr/blob/master/R/decrypt.R'><code>R/decrypt.R</code></a></small>
     <div class="hidden name"><code>decrypt.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Decrypt a dataframe or tibble column using an RSA public/private key</p>
+    <p>Decrypt a data frame or tibble column using an RSA public/private key</p>
     
     </div>
 
@@ -119,7 +119,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>.data</th>
-      <td><p>A dataframe or tibble.</p></td>
+      <td><p>A data frame or tibble.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -149,15 +149,40 @@ created using <code><a href='encrypt.html'>encrypt</a></code>.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>library</span>(<span class='no'>dplyr</span>)
+    <pre class="examples"><div class='input'><span class='co'>#' This will run:</span>
+<span class='co'># genkeys()</span>
+<span class='co'># gp_encrypt = gp %&gt;%</span>
+<span class='co'>#   select(-c(name, address1, address2, address3)) %&gt;%</span>
+<span class='co'>#   encrypt(postcode, telephone)</span>
+<span class='co'># gp_encrypt %&gt;%</span>
+<span class='co'>#   decrypt(postcode, telephone)</span>
+
+<span class='co'># For CRAN and testing:</span>
+<span class='fu'>library</span>(<span class='no'>dplyr</span>)</div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: ‘dplyr’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:stats’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    filter, lag</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'><span class='no'>temp_dir</span> <span class='kw'>=</span> <span class='fu'>tempdir</span>()
+<span class='fu'><a href='genkeys.html'>genkeys</a></span>(<span class='fu'>file.path</span>(<span class='no'>temp_dir</span>, <span class='st'>"id_rsa"</span>)) <span class='co'># temp directory for testing only</span>
 <span class='no'>gp_encrypt</span> <span class='kw'>=</span> <span class='no'>gp</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(-<span class='fu'>c</span>(<span class='no'>name</span>, <span class='no'>address1</span>, <span class='no'>address2</span>, <span class='no'>address3</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='encrypt.html'>encrypt</a></span>(<span class='no'>postcode</span>, <span class='no'>telephone</span>)
-
-<span class='no'>gp_encrypt</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>decrypt</span>(<span class='no'>postcode</span>, <span class='no'>telephone</span>)
-<span class='co'># }</span></pre>
+  <span class='fu'><a href='encrypt.html'>encrypt</a></span>(<span class='no'>postcode</span>, <span class='no'>telephone</span>, <span class='kw'>public_key_path</span> <span class='kw'>=</span> <span class='fu'>file.path</span>(<span class='no'>temp_dir</span>, <span class='st'>"id_rsa.pub"</span>))
+  <span class='no'>gp_encrypt</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>decrypt</span>(<span class='no'>postcode</span>, <span class='no'>telephone</span>, <span class='kw'>private_key_path</span> <span class='kw'>=</span> <span class='fu'>file.path</span>(<span class='no'>temp_dir</span>, <span class='st'>"id_rsa"</span>))</div><div class='output co'>#&gt; # A tibble: 1,212 x 8
+#&gt;    organisation_co… city  county postcode opendate   closedate  telephone
+#&gt;    &lt;chr&gt;            &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;date&gt;     &lt;date&gt;     &lt;chr&gt;    
+#&gt;  1 S10002           DUND… ANGUS  DD2 5NH  1995-05-01 NA         01382 58…
+#&gt;  2 S10017           CRIE… PERTH… PH7 3SA  1996-04-06 NA         01764 65…
+#&gt;  3 S10036           ABER… PERTH… PH15 2BL 2008-04-01 NA         01887 82…
+#&gt;  4 S10060           ABER… PERTH… PH15 2BH 1975-04-01 2008-03-31 01887 82…
+#&gt;  5 S10106           DUND… ANGUS  DD5 1DU  1996-07-08 NA         01382 77…
+#&gt;  6 S10125           BLAI… PERTH… PH11 8EQ 1979-10-01 NA         01828 63…
+#&gt;  7 S10182           ARBR… ANGUS  DD11 1AD 1977-10-01 NA         01241 43…
+#&gt;  8 S10233           ARBR… ANGUS  DD11 1EN 1986-08-01 NA         01241 87…
+#&gt;  9 S10286           ARBR… ANGUS  DD11 1ES 1975-08-01 NA         01241 87…
+#&gt; 10 S10322           ARBR… ANGUS  DD11 1ES 1971-10-01 NA         01241 87…
+#&gt; # … with 1,202 more rows, and 1 more variable: practice_type &lt;dbl&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

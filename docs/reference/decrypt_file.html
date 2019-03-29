@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Assign — assign_to_global • encryptr</title>
+<title>Decrypt a file — decrypt_file • encryptr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Assign — assign_to_global" />
+<meta property="og:title" content="Decrypt a file — decrypt_file" />
 
-<meta property="og:description" content="Assign" />
+<meta property="og:description" content="See encrypt_file for details." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -100,35 +100,68 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Assign</h1>
-    <small class="dont-index">Source: <a href='https://github.com/SurgicalInformatics/encryptr/blob/master/R/finalencrypt-internal_functions.R'><code>R/finalencrypt-internal_functions.R</code></a></small>
-    <div class="hidden name"><code>assign_to_global.Rd</code></div>
+    <h1>Decrypt a file</h1>
+    <small class="dont-index">Source: <a href='https://github.com/SurgicalInformatics/encryptr/blob/master/R/decrypt_file.R'><code>R/decrypt_file.R</code></a></small>
+    <div class="hidden name"><code>decrypt_file.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Assign</p>
+    <p>See <code><a href='encrypt_file.html'>encrypt_file</a></code> for details.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>assign_to_global</span>(<span class='no'>key</span>, <span class='no'>val</span>, <span class='no'>pos</span>)</pre>
+    <pre class="usage"><span class='fu'>decrypt_file</span>(<span class='no'>.path</span>, <span class='kw'>private_key_path</span> <span class='kw'>=</span> <span class='st'>"id_rsa"</span>, <span class='kw'>file_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>pos</th>
-      <td></td>
+      <th>.path</th>
+      <td><p>Quoted path to file to encrypt.</p></td>
+    </tr>
+    <tr>
+      <th>private_key_path</th>
+      <td><p>Quoted path to private key, created with
+<code><a href='genkeys.html'>genkeys</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>file_name</th>
+      <td><p>Optional new name for unencrypted file.</p></td>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>The decrypted file is saved.</p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># This will run:</span>
+<span class='co'># Create example file to encrypt</span>
+<span class='co'># write.csv(gp, "gp.csv")</span>
+<span class='co'># genkeys()</span>
+<span class='co'># encrypt_file("gp.csv")</span>
+<span class='co'># decrypt_file("gp.csv.encryptr.bin", file_name = "gp2.csv")</span>
+
+<span class='co'># For CRAN and testing:</span>
+<span class='no'>temp_dir</span> <span class='kw'>=</span> <span class='fu'>tempdir</span>() <span class='co'># temp directory for testing only</span>
+<span class='fu'><a href='genkeys.html'>genkeys</a></span>(<span class='fu'>file.path</span>(<span class='no'>temp_dir</span>, <span class='st'>"id_rsa4"</span>))
+<span class='fu'>write.csv</span>(<span class='no'>gp</span>, <span class='fu'>file.path</span>(<span class='no'>temp_dir</span>, <span class='st'>"gp.csv"</span>))
+<span class='fu'><a href='encrypt_file.html'>encrypt_file</a></span>(<span class='fu'>file.path</span>(<span class='no'>temp_dir</span>, <span class='st'>"gp.csv"</span>), <span class='kw'>public_key_path</span> <span class='kw'>=</span> <span class='fu'>file.path</span>(<span class='no'>temp_dir</span>, <span class='st'>"id_rsa4.pub"</span>))</div><div class='output co'>#&gt; Encrypted file written with name '/tmp/Rtmp92wTFG/gp.csv.encryptr.bin'</div><div class='input'><span class='fu'>decrypt_file</span>(<span class='fu'>file.path</span>(<span class='no'>temp_dir</span>, <span class='st'>"gp.csv.encryptr.bin"</span>),
+  <span class='kw'>private_key_path</span> <span class='kw'>=</span> <span class='fu'>file.path</span>(<span class='no'>temp_dir</span>, <span class='st'>"id_rsa4"</span>),
+  <span class='kw'>file_name</span> <span class='kw'>=</span> <span class='st'>"gp2.csv"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in decrypt_file(file.path(temp_dir, "gp.csv.encryptr.bin"), private_key_path = file.path(temp_dir,     "id_rsa4"), file_name = "gp2.csv"): Unencrtyped file with same name exists at this location. </span>
+#&gt; <span class='error'>  Move or choose new name (file_name) to avoid it being overwritten.</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+      
+      <li><a href="#value">Value</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

@@ -31,7 +31,8 @@ overwritten, any data encrypted with the public key cannot be decrypted.
 # genkeys()
 
 # For CRAN purposes and testing
-genkeys(file.path(tempdir(), "id_rsa"))
+temp_dir = tempdir()
+genkeys(file.path(temp_dir, "id_rsa3"))
 
 }
 \seealso{

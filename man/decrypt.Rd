@@ -2,13 +2,13 @@
 % Please edit documentation in R/decrypt.R
 \name{decrypt}
 \alias{decrypt}
-\title{Decrypt a dataframe or tibble column using an RSA public/private key}
+\title{Decrypt a data frame or tibble column using an RSA public/private key}
 \usage{
 decrypt(.data, ..., private_key_path = "id_rsa", lookup_object = NULL,
   lookup_path = NULL)
 }
 \arguments{
-\item{.data}{A dataframe or tibble.}
+\item{.data}{A data frame or tibble.}
 
 \item{...}{The unquoted names of columns to decrypt.}
 
@@ -26,16 +26,24 @@ The original dataframe or tibble with the specified columns
   decrypted.
 }
 \description{
-Decrypt a dataframe or tibble column using an RSA public/private key
+Decrypt a data frame or tibble column using an RSA public/private key
 }
 \examples{
-\dontrun{
+#' This will run:
+# genkeys()
+# gp_encrypt = gp \%>\%
+#   select(-c(name, address1, address2, address3)) \%>\%
+#   encrypt(postcode, telephone)
+# gp_encrypt \%>\%
+#   decrypt(postcode, telephone)
+
+# For CRAN and testing:
 library(dplyr)
+temp_dir = tempdir()
+genkeys(file.path(temp_dir, "id_rsa")) # temp directory for testing only
 gp_encrypt = gp \%>\%
   select(-c(name, address1, address2, address3)) \%>\%
-  encrypt(postcode, telephone)
-
-gp_encrypt \%>\%
-  decrypt(postcode, telephone)
-}
+  encrypt(postcode, telephone, public_key_path = file.path(temp_dir, "id_rsa.pub"))
+  gp_encrypt \%>\%
+  decrypt(postcode, telephone, private_key_path = file.path(temp_dir, "id_rsa"))
 }
