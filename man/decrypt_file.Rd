@@ -35,5 +35,5 @@ write.csv(gp, file.path(temp_dir, "gp.csv"))
 encrypt_file(file.path(temp_dir, "gp.csv"), public_key_path = file.path(temp_dir, "id_rsa4.pub"))
 decrypt_file(file.path(temp_dir, "gp.csv.encryptr.bin"),
   private_key_path = file.path(temp_dir, "id_rsa4"),
-  file_name = "gp2.csv")
+  file_name = "file.path(temp_dir, gp2.csv)")
 }

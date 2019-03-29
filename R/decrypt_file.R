@@ -25,7 +25,7 @@
 #' encrypt_file(file.path(temp_dir, "gp.csv"), public_key_path = file.path(temp_dir, "id_rsa4.pub"))
 #' decrypt_file(file.path(temp_dir, "gp.csv.encryptr.bin"),
 #'   private_key_path = file.path(temp_dir, "id_rsa4"),
-#'   file_name = "gp2.csv")
+#'   file_name = "file.path(temp_dir, gp2.csv)")
 decrypt_file <- function(.path, private_key_path = "id_rsa", file_name = NULL) {
   if (!file.exists(.path)) {
     stop("Encrypted file cannot be found.")
