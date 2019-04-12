@@ -26,13 +26,17 @@
 #' decrypt_file(file.path(temp_dir, "gp.csv.encryptr.bin"),
 #'   private_key_path = file.path(temp_dir, "id_rsa4"),
 #'   file_name = "file.path(temp_dir, gp2.csv)")
-decrypt_file <- function(.path, private_key_path = "id_rsa", file_name = NULL) {
+decrypt_file <- function(.path, file_name = NULL, private_key_path = "id_rsa") {
   if (!file.exists(.path)) {
     stop("Encrypted file cannot be found.")
   }
 
+  if (!file.exists(private_key_path)) {
+    stop("Private key cannot be found. \n  Should be created with encryptr::genkeys")
+  }
+
   if (!grepl(".encryptr.bin$", .path)){
-    stop("Encrypted file has incorrect name. /n  Should be created with encryptr::encrypt_file and end with '.encryptr.bin'")
+    stop("Encrypted file has incorrect name. \n  Should be created with encryptr::encrypt_file and end with '.encryptr.bin'")
   }
 
   if(is.null(file_name)){

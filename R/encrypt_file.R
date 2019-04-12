@@ -35,10 +35,15 @@
 #' write.csv(gp, file.path(temp_dir, "gp.csv"))
 #' encrypt_file(file.path(temp_dir, "gp.csv"), public_key_path = file.path(temp_dir, "id_rsa.pub"))
 #' }
-encrypt_file <- function(.path, public_key_path = "id_rsa.pub", crypt_file_name = NULL) {
+encrypt_file <- function(.path, crypt_file_name = NULL, public_key_path = "id_rsa.pub") {
   if (!file.exists(.path)) {
     stop("File for encryption cannot be found.")
   }
+
+  if (!file.exists(public_key_path)) {
+    stop("Public key cannot be found. \n  Should be created with encryptr::genkeys")
+  }
+
 
   if(is.null(crypt_file_name)){
     .crypt_file = paste0(.path, ".encryptr.bin")
@@ -62,3 +67,5 @@ encrypt_file <- function(.path, public_key_path = "id_rsa.pub", crypt_file_name 
         .crypt_file, "'\n", sep = "")
   }
 }
+
+
