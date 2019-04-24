@@ -33,6 +33,11 @@ test_with_dir("genkeys() errors if files already exist", {
   expect_error(genkeys())
 })
 
+test_with_dir("genkeys() errors if files already exist", {
+  genkeys(private_key_name = 'id_rsa1', public_key_name = 'id_rsa.pub')
+  expect_error(genkeys())
+})
+
 test_with_dir("genkeys() creates keys with requested names", {
   genkeys("custom")
   expect_true(file.exists("custom"))
