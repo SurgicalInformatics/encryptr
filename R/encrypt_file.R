@@ -40,8 +40,8 @@ encrypt_file <- function(.path, crypt_file_name = NULL, public_key_path = "id_rs
     stop("File for encryption cannot be found.")
   }
 
-  if(!file.exists(public_key_path)) {
-    stop("Public key cannot be found.")
+  if (!file.exists(public_key_path)) {
+    stop("Public key cannot be found. \n  Should be created with encryptr::genkeys")
   }
 
   if(is.null(crypt_file_name)){
@@ -66,3 +66,5 @@ encrypt_file <- function(.path, crypt_file_name = NULL, public_key_path = "id_rs
         .crypt_file, "'\n", sep = "")
   }
 }
+
+

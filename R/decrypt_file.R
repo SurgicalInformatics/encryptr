@@ -7,7 +7,7 @@
 #' @param private_key_path Quoted path to private key, created with
 #'   \code{\link{genkeys}}.
 #'
-#' @return The decrypted file is saved.
+#' @return The decrypted file is saved with optional file name.
 #' @export
 #'
 #' @examples
@@ -31,8 +31,8 @@ decrypt_file <- function(.path, file_name = NULL, private_key_path = "id_rsa") {
     stop("Encrypted file cannot be found.")
   }
 
-  if(!file.exists(private_key_path)) {
-    stop("Private key cannot be found.")
+  if (!file.exists(private_key_path)) {
+    stop("Private key cannot be found. \n  Should be created with encryptr::genkeys")
   }
 
   if (!grepl(".encryptr.bin$", .path)){

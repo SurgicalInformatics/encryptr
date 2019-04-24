@@ -15,7 +15,7 @@ decrypt_file(.path, file_name = NULL, private_key_path = "id_rsa")
 \code{\link{genkeys}}.}
 }
 \value{
-The decrypted file is saved.
+The decrypted file is saved with optional file name.
 }
 \description{
 See \code{\link{encrypt_file}} for details.
