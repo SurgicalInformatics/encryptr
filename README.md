@@ -1,6 +1,7 @@
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/encryptr)](https://cran.r-project.org/package=encryptr)
 [![CRAN_Status_Badge](https://cranlogs.r-pkg.org/badges/encryptr)](https://cran.r-project.org/package=encryptr)
 [![TravisCRAN_Status_Badge](https://travis-ci.com/SurgicalInformatics/encryptr.svg?branch=master)](https://travis-ci.com/SurgicalInformatics/encryptr)
+[![Coverage status](https://codecov.io/gh/surgicalinformatics/encryptr/branch/master/graph/badge.svg)](https://codecov.io/github/surgicalinformatics/encryptr?branch=master)
 
 # encryptr
 
