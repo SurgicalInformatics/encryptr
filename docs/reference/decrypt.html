@@ -164,8 +164,8 @@ created using <code><a href='encrypt.html'>encrypt</a></code>.</p></td>
 #&gt; <span class='message'>    filter, lag</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'><span class='no'>temp_dir</span> <span class='kw'>=</span> <span class='fu'>tempdir</span>()
-<span class='fu'><a href='genkeys.html'>genkeys</a></span>(<span class='fu'>file.path</span>(<span class='no'>temp_dir</span>, <span class='st'>"id_rsa"</span>)) <span class='co'># temp directory for testing only</span>
-<span class='no'>gp_encrypt</span> <span class='kw'>=</span> <span class='no'>gp</span> <span class='kw'>%&gt;%</span>
+<span class='fu'><a href='genkeys.html'>genkeys</a></span>(<span class='fu'>file.path</span>(<span class='no'>temp_dir</span>, <span class='st'>"id_rsa"</span>)) <span class='co'># temp directory for testing only</span></div><div class='output co'>#&gt; Private key written with name '/tmp/RtmpNJFWCz/id_rsa'
+#&gt; Public key written with name '/tmp/RtmpNJFWCz/id_rsa.pub'</div><div class='input'><span class='no'>gp_encrypt</span> <span class='kw'>=</span> <span class='no'>gp</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(-<span class='fu'>c</span>(<span class='no'>name</span>, <span class='no'>address1</span>, <span class='no'>address2</span>, <span class='no'>address3</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='encrypt.html'>encrypt</a></span>(<span class='no'>postcode</span>, <span class='no'>telephone</span>, <span class='kw'>public_key_path</span> <span class='kw'>=</span> <span class='fu'>file.path</span>(<span class='no'>temp_dir</span>, <span class='st'>"id_rsa.pub"</span>))
   <span class='no'>gp_encrypt</span> <span class='kw'>%&gt;%</span>

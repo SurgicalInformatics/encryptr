@@ -5,9 +5,11 @@
 
 # encryptr
 
-## Easily encrypt and decrypt data frame or tibble columns using RSA public/private keys
+## Easily encrypt and decrypt data frame/tibble columns and files using RSA public/private keys
 
-The `encryptr` package provides functions to simply encrypt and decrypt columns of data. The motivation is around sensitive healthcare data, but the applications are wide. There are a number of packages providing similar functions. However, they tend to be complex and are not designed with `tidyverse` functions in mind. The package wraps `openssl` and is intended to be safe and straightforward for non-experts. Strong RSA (2048 bit) encryption using a public/private key pair is used. 
+The `encryptr` package provides functions to simply encrypt and decrypt columns of data. It also includes functions to encrypt and decrypt files. 
+
+The motivation is around sensitive healthcare data, but the applications are wide. There are a number of packages providing similar functions. However, they tend to be complex and are not designed with `tidyverse` functions in mind. The package wraps `openssl` and is intended to be safe and straightforward for non-experts. Strong RSA (2048 bit) encryption using a public/private key pair is used. 
 
 It is designed to work in [tidyverse](http://tidyverse.tidyverse.org/articles/manifesto.html) piped functions.
 
@@ -25,7 +27,7 @@ devtools::install_github("SurgicalInformatics/encryptr")
 Documentation is maintained at [encrypt-r.org](https://encrypt-r.org).
 
 
-## Getting started
+## Getting started: encrypt and decrypt data frame columns
 
 The basis of RSA encryption is a public/private key pair and is the method used of many modern encryption applications. The public key can be shared and is used to encrypt the information.
 
@@ -47,6 +49,8 @@ If the private key file is lost, nothing encrypted with the public key can be re
 
 ``` r
 genkeys()
+> Private key written with name 'id_rsa'
+> Public key written with name 'id_rsa.pub'
 ```
 
 ### Encrypt 
@@ -145,7 +149,51 @@ gp_encrypt %>%
  2 PH7 3SA  01764 652283 S10017            CRIEFF      PERTHSHIRE 1996-04-06 NA                     4
  
  ```
-### Providing a public key
+ 
+### Not a hash
+
+The ciphertext produced for a given input will change with each encryption. This is a feature of the RSA algorithm. Ciphertexts should not therefore be attempted to be matched between datasets encrypted using the same public key. This is a conscious decision given the risks associated with sharing the necessary details (a salt).
+
+
+## Getting started: encrypt and decrypt files
+
+Encryption and decryption with asymmetric keys is computationally expensive. This is how `encrypt` above works. This makes it easy for each piece of data in a data frame to be decrypted without compromise of the whole data frame. This works on the presumption that each cell contains less than 245 bytes of data.
+
+File encryption requires a different approach as files are often larger in size. `encrypt_file` encrypts a file using a symmetric "session" key and the AES-256 cipher. This key is itself then encrypted using a public key generated using genkeys. In OpenSSL this combination is referred to as an envelope.
+
+### Generate keys 
+
+``` r
+genkeys()
+> Private key written with name 'id_rsa'
+> Public key written with name 'id_rsa.pub'
+```
+
+### Encrypt file
+
+To demonstrate, the included dataset is written as a .csv file. 
+
+``` r
+write.csv(gp, "gp.csv")
+
+genkeys()
+> Private key written with name 'id_rsa'
+> Public key written with name 'id_rsa.pub'
+
+encrypt_file("gp.csv")
+> Encrypted file written with name 'gp.csv.encryptr.bin'
+```
+
+Check that the file can be decrypted prior to removing the original file from your system. Warning: it is strongly suggested that the original unencrypted data file is stored as a back-up in case unencryption is not possible, e.g., the private key file or password is lost
+
+The `decrypt_file` function will not allow the original file to be overwritten, therefore use the option to specify a new name for the unencrypted file. 
+
+``` r
+decrypt_file("gp.csv.encryptr.bin", file_name = "gp2.csv")
+> Decrypted file written with name 'gp2.csv'
+```
+
+## Providing a public key
 
 In collaborative projects where data may be pooled, a public key can be made available by you via a link to enable collaborators to encrypt sensitive data, e.g. 
 
@@ -155,10 +203,8 @@ gp_encrypt = gp %>%
   encrypt(postcode, telephone, public_key_path = "https://argonaut.is.ed.ac.uk/public/id_rsa.pub")
 ```
 
-### Not a hash
 
-The ciphertext produced for a given input will change with each encryption. This is a feature of the RSA algorithm. Ciphertexts should not therefore be attempted to be matched between datasets encrypted using the same public key. This is a conscious decision given the risks associated with sharing the necessary details (a salt).
 
-### Caution
+## Caution
 
 All confidential information must be treated with the utmost care. Data should never be carried on removable devices or portable computers. Data should never be sent by open email. Encrypting data provides some protection against disclosure. But particularly in healthcare, data often remains potentially disclosive (or only pseudonymised) even after encryption of identifiable variables. Treat it with great care and respect. 
