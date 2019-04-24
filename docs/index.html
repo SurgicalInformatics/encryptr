@@ -5,11 +5,11 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Easily Encrypt and Decrypt Data Frame or Tibble Columns using RSA Public/Private Keys  • encryptr</title>
+<title>Easily Encrypt and Decrypt Data Frame/Tibble Columns or Files using RSA Public/Private Keys  • encryptr</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Easily Encrypt and Decrypt Data Frame or Tibble Columns using RSA Public/Private Keys ">
+<script src="pkgdown.js"></script><meta property="og:title" content="Easily Encrypt and Decrypt Data Frame/Tibble Columns or Files using RSA Public/Private Keys ">
 <meta property="og:description" content="It is important to ensure that sensitive data is protected. 
     This straightforward package is aimed at the end-user. 
     Strong RSA encryption using a public/private key pair is used to encrypt data frame or tibble columns.
@@ -75,10 +75,11 @@
 <div id="encryptr" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#encryptr" class="anchor"></a>encryptr</h1></div>
-<div id="easily-encrypt-and-decrypt-data-frame-or-tibble-columns-using-rsa-publicprivate-keys" class="section level2">
+<div id="easily-encrypt-and-decrypt-data-frametibble-columns-and-files-using-rsa-publicprivate-keys" class="section level2">
 <h2 class="hasAnchor">
-<a href="#easily-encrypt-and-decrypt-data-frame-or-tibble-columns-using-rsa-publicprivate-keys" class="anchor"></a>Easily encrypt and decrypt data frame or tibble columns using RSA public/private keys</h2>
-<p>The <code>encryptr</code> package provides functions to simply encrypt and decrypt columns of data. The motivation is around sensitive healthcare data, but the applications are wide. There are a number of packages providing similar functions. However, they tend to be complex and are not designed with <code>tidyverse</code> functions in mind. The package wraps <code>openssl</code> and is intended to be safe and straightforward for non-experts. Strong RSA (2048 bit) encryption using a public/private key pair is used.</p>
+<a href="#easily-encrypt-and-decrypt-data-frametibble-columns-and-files-using-rsa-publicprivate-keys" class="anchor"></a>Easily encrypt and decrypt data frame/tibble columns and files using RSA public/private keys</h2>
+<p>The <code>encryptr</code> package provides functions to simply encrypt and decrypt columns of data. It also includes functions to encrypt and decrypt files.</p>
+<p>The motivation is around sensitive healthcare data, but the applications are wide. There are a number of packages providing similar functions. However, they tend to be complex and are not designed with <code>tidyverse</code> functions in mind. The package wraps <code>openssl</code> and is intended to be safe and straightforward for non-experts. Strong RSA (2048 bit) encryption using a public/private key pair is used.</p>
 <p>It is designed to work in <a href="http://tidyverse.tidyverse.org/articles/manifesto.html">tidyverse</a> piped functions.</p>
 </div>
 <div id="installation" class="section level2">
@@ -92,9 +93,9 @@
 <a href="#documentation" class="anchor"></a>Documentation</h2>
 <p>Documentation is maintained at <a href="https://encrypt-r.org">encrypt-r.org</a>.</p>
 </div>
-<div id="getting-started" class="section level2">
+<div id="getting-started-encrypt-and-decrypt-data-frame-columns" class="section level2">
 <h2 class="hasAnchor">
-<a href="#getting-started" class="anchor"></a>Getting started</h2>
+<a href="#getting-started-encrypt-and-decrypt-data-frame-columns" class="anchor"></a>Getting started: encrypt and decrypt data frame columns</h2>
 <p>The basis of RSA encryption is a public/private key pair and is the method used of many modern encryption applications. The public key can be shared and is used to encrypt the information.</p>
 <p>The private key is sensitive and should not be shared. The private key requires a password to be set. This password should follow modern rules on password complexity. You know what you should do. If lost, it cannot be recovered.</p>
 <div id="generate-keys" class="section level3">
@@ -110,7 +111,9 @@
 <li><code>id_rsa.pub</code></li>
 </ul>
 <p>If the private key file is lost, nothing encrypted with the public key can be recovered. Keep this safe and secure. Do not share it without a lot of thought on the implications.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="reference/genkeys.html">genkeys</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="reference/genkeys.html">genkeys</a></span>()</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="op">&gt;</span><span class="st"> </span>Private key written with name <span class="st">'id_rsa'</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="op">&gt;</span><span class="st"> </span>Public key written with name <span class="st">'id_rsa.pub'</span></a></code></pre></div>
 </div>
 <div id="encrypt" class="section level3">
 <h3 class="hasAnchor">
@@ -193,24 +196,50 @@
 <a class="sourceLine" id="cb8-8" data-line-number="8"> <span class="dv">2</span> PH7 3SA  <span class="dv">01764</span> <span class="dv">652283</span> S10017            CRIEFF      PERTHSHIRE <span class="dv">1996-04-06</span> <span class="ot">NA</span>                     <span class="dv">4</span></a>
 <a class="sourceLine" id="cb8-9" data-line-number="9"> </a></code></pre></div>
 </div>
-<div id="providing-a-public-key" class="section level3">
-<h3 class="hasAnchor">
-<a href="#providing-a-public-key" class="anchor"></a>Providing a public key</h3>
-<p>In collaborative projects where data may be pooled, a public key can be made available by you via a link to enable collaborators to encrypt sensitive data, e.g.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">gp_encrypt =<span class="st"> </span>gp <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">c</span>(name, address1, address2, address3)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="reference/encrypt.html">encrypt</a></span>(postcode, telephone, <span class="dt">public_key_path =</span> <span class="st">"https://argonaut.is.ed.ac.uk/public/id_rsa.pub"</span>)</a></code></pre></div>
-</div>
 <div id="not-a-hash" class="section level3">
 <h3 class="hasAnchor">
 <a href="#not-a-hash" class="anchor"></a>Not a hash</h3>
 <p>The ciphertext produced for a given input will change with each encryption. This is a feature of the RSA algorithm. Ciphertexts should not therefore be attempted to be matched between datasets encrypted using the same public key. This is a conscious decision given the risks associated with sharing the necessary details (a salt).</p>
 </div>
-<div id="caution" class="section level3">
-<h3 class="hasAnchor">
-<a href="#caution" class="anchor"></a>Caution</h3>
-<p>All confidential information must be treated with the utmost care. Data should never be carried on removable devices or portable computers. Data should never be sent by open email. Encrypting data provides some protection against disclosure. But particularly in healthcare, data often remains potentially disclosive (or only pseudonymised) even after encryption of identifiable variables. Treat it with great care and respect.</p>
 </div>
+<div id="getting-started-encrypt-and-decrypt-files" class="section level2">
+<h2 class="hasAnchor">
+<a href="#getting-started-encrypt-and-decrypt-files" class="anchor"></a>Getting started: encrypt and decrypt files</h2>
+<p>Encryption and decryption with asymmetric keys is computationally expensive. This is how <code>encrypt</code> above works. This makes it easy for each piece of data in a data frame to be decrypted without compromise of the whole data frame. This works on the presumption that each cell contains less than 245 bytes of data.</p>
+<p>File encryption requires a different approach as files are often larger in size. <code>encrypt_file</code> encrypts a file using a symmetric “session” key and the AES-256 cipher. This key is itself then encrypted using a public key generated using genkeys. In OpenSSL this combination is referred to as an envelope.</p>
+<div id="generate-keys-1" class="section level3">
+<h3 class="hasAnchor">
+<a href="#generate-keys-1" class="anchor"></a>Generate keys</h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw"><a href="reference/genkeys.html">genkeys</a></span>()</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="op">&gt;</span><span class="st"> </span>Private key written with name <span class="st">'id_rsa'</span></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="op">&gt;</span><span class="st"> </span>Public key written with name <span class="st">'id_rsa.pub'</span></a></code></pre></div>
+</div>
+<div id="encrypt-file" class="section level3">
+<h3 class="hasAnchor">
+<a href="#encrypt-file" class="anchor"></a>Encrypt file</h3>
+<p>To demonstrate, the included dataset is written as a .csv file.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">write.csv</span>(gp, <span class="st">"gp.csv"</span>)</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="kw"><a href="reference/encrypt_file.html">encrypt_file</a></span>(<span class="st">"gp.csv"</span>)</a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="op">&gt;</span><span class="st"> </span>Encrypted file written with name <span class="st">'gp.csv.encryptr.bin'</span></a></code></pre></div>
+<p>Check that the file can be decrypted prior to removing the original file from your system. Warning: it is strongly suggested that the original unencrypted data file is stored as a back-up in case unencryption is not possible, e.g., the private key file or password is lost</p>
+<p>The <code>decrypt_file</code> function will not allow the original file to be overwritten, therefore use the option to specify a new name for the unencrypted file.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="reference/decrypt_file.html">decrypt_file</a></span>(<span class="st">"gp.csv.encryptr.bin"</span>, <span class="dt">file_name =</span> <span class="st">"gp2.csv"</span>)</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="op">&gt;</span><span class="st"> </span>Decrypted file written with name <span class="st">'gp2.csv'</span></a></code></pre></div>
+</div>
+</div>
+<div id="providing-a-public-key" class="section level2">
+<h2 class="hasAnchor">
+<a href="#providing-a-public-key" class="anchor"></a>Providing a public key</h2>
+<p>In collaborative projects where data may be pooled, a public key can be made available by you via a link to enable collaborators to encrypt sensitive data, e.g.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">gp_encrypt =<span class="st"> </span>gp <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">c</span>(name, address1, address2, address3)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="reference/encrypt.html">encrypt</a></span>(postcode, telephone, <span class="dt">public_key_path =</span> <span class="st">"https://argonaut.is.ed.ac.uk/public/id_rsa.pub"</span>)</a></code></pre></div>
+</div>
+<div id="caution" class="section level2">
+<h2 class="hasAnchor">
+<a href="#caution" class="anchor"></a>Caution</h2>
+<p>All confidential information must be treated with the utmost care. Data should never be carried on removable devices or portable computers. Data should never be sent by open email. Encrypting data provides some protection against disclosure. But particularly in healthcare, data often remains potentially disclosive (or only pseudonymised) even after encryption of identifiable variables. Treat it with great care and respect.</p>
 </div>
 </div>
 
