@@ -48,6 +48,7 @@ decrypt_vec <- function(.data, private_key_path = "id_rsa"){
 #' # gp_encrypt %>%
 #' #   decrypt(postcode, telephone)
 #'
+#' \dontrun{
 #' # For CRAN and testing:
 #' library(dplyr)
 #' temp_dir = tempdir()
@@ -57,6 +58,7 @@ decrypt_vec <- function(.data, private_key_path = "id_rsa"){
 #'   encrypt(postcode, telephone, public_key_path = file.path(temp_dir, "id_rsa.pub"))
 #'   gp_encrypt %>%
 #'   decrypt(postcode, telephone, private_key_path = file.path(temp_dir, "id_rsa"))
+#'   }
 decrypt <- function(.data, ..., private_key_path = "id_rsa",
                     lookup_object = NULL,
                     lookup_path = NULL){
