@@ -15,6 +15,7 @@ external.packages:
     pkgdown
     testthat
     covr
+    magick
 local.repos: 
 load.external.packages.on.startup: TRUE
 ignored.packages: 

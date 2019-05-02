@@ -37,6 +37,7 @@ Decrypt a data frame or tibble column using an RSA public/private key
 # gp_encrypt \%>\%
 #   decrypt(postcode, telephone)
 
+\dontrun{
 # For CRAN and testing:
 library(dplyr)
 temp_dir = tempdir()
@@ -46,4 +47,5 @@ gp_encrypt = gp \%>\%
   encrypt(postcode, telephone, public_key_path = file.path(temp_dir, "id_rsa.pub"))
   gp_encrypt \%>\%
   decrypt(postcode, telephone, private_key_path = file.path(temp_dir, "id_rsa"))
+  }
 }

@@ -3,7 +3,9 @@
 [![TravisCRAN_Status_Badge](https://travis-ci.com/SurgicalInformatics/encryptr.svg?branch=master)](https://travis-ci.com/SurgicalInformatics/encryptr)
 [![Coverage status](https://codecov.io/gh/surgicalinformatics/encryptr/branch/master/graph/badge.svg)](https://codecov.io/github/surgicalinformatics/encryptr?branch=master)
 
-# encryptr
+encryptr <img src="man/figures/encryptr_hex.png" align="right" />
+==============================
+
 
 ## Easily encrypt and decrypt data frame/tibble columns and files using RSA public/private keys
 
