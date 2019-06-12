@@ -79,11 +79,11 @@ gp_encrypt = gp %>%
 
 gp_encrypt 
 
-# A tibble: 1,212 x 10
-   organisation_code name       address1      city  county postcode      opendate   closedate  telephone      practice_type
-   <chr>             <chr>      <chr>         <chr> <chr>  <chr>         <date>     <date>     <chr>                  <dbl>
- 1 S10002            619057f99… 54c39b3fa200… DUND… ANGUS  796284eb46ca… 1995-05-01 NA         5fcc30b04e260…             4
- 2 S10017            371aa33c3… a996d07a84d2… CRIE… PERTH… 639dfc076ae3… 1996-04-06 NA         715909615a6ae…             4
+# A tibble: 1,212 x 8
+   organisation_code city  county postcode      opendate   closedate  telephone      practice_type
+   <chr>             <chr> <chr>  <chr>         <date>     <date>     <chr>                  <dbl>
+ 1 S10002            DUND… ANGUS  796284eb46ca… 1995-05-01 NA         5fcc30b04e260…             4
+ 2 S10017            CRIE… PERTH… 639dfc076ae3… 1996-04-06 NA         715909615a6ae…             4
 ```
 ### Decrypt 
 
