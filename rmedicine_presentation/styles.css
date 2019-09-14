@@ -1,0 +1,79 @@
+slides > .title-slide hgroup h1 {
+      font-weight: bold;
+      font-size: 40pt;
+      color:black;
+}
+
+slides > slide.title-slide p {
+  color: black;
+}
+
+#waking-up-to-data {
+  font-size: 1em;
+  text-align: center;
+}
+
+.basictext {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: black
+} 
+  
+.threelinestext {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: black
+}
+
+.fourlinestext {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: black
+}
+
+slides > slide:not(.nobackground):before {
+  height: 80px;
+  width: 69.3px;
+  background-size: 69px 79px;
+}
+
+slides > slide hgroup h2 {
+      font-weight: bold;
+      font-size: 40pt;
+      color:black;
+}
+
+
+/* Pretty print */
+
+.prettyprint .com {
+  /* a comment */
+  color: green;
+  font-style: italic;
+}
+
+
+.prettyprint .lit {
+  /* a literal value */
+  color: #036bfc;
+}
+
+.prettyprint .pun,
+.prettyprint .opn,
+.prettyprint .clo {
+  color: red;
+}
+
+.prettyprint .pln {
+  color: #030ffc;
+}
+
+.prettyprint .fun {
+  /* a function - not working at present */
+  color: #036bfc;
+}
+
+.prettyprint .var {
+  /* a variable - not working at present */
+  color: purple;
+}
