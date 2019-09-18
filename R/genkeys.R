@@ -60,7 +60,7 @@ genkeys <- function(private_key_name = "id_rsa",
   }
 
   if(file.exists(public_key_name) | file.exists(private_key_name)){
-    cat("It is strongly suggested that you add the keys to your .gitignore file if you backup your project with git")
+    cat("It is strongly suggested that you add the private key to your .gitignore file if you backup your project with git")
   }
 
 
