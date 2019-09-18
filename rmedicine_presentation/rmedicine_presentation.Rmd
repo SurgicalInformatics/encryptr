@@ -19,6 +19,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ```{r, include = FALSE}
 # Following line will delete any existing public and private keys in directory
 # Do not uncomment it unless you are happy to delete these keys
+# If the keys are present the code won't run as it attempts to create them (change the key names at gen_keys() to run slides if keys already exist and can't be deleted
 # system(paste0("rm ", getwd(), "/id_rsa*"))
 options(width=150)
 options(dplyr.print_min = 6, dplyr.print_max = 6)
