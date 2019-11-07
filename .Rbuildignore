@@ -6,3 +6,4 @@ data-raw
 .travis.yml
 docs
 ^codecov\.yml$
+.travis.yml

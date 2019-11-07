@@ -18,9 +18,13 @@ It is designed to work in [tidyverse](http://tidyverse.tidyverse.org/articles/ma
 
 ## Installation
 
-You can install `encryptr` from GitHub:
+You can install `encryptr` from CRAN and GitHub:
 
 ``` r
+install.packages("encryptr")
+
+# or 
+
 devtools::install_github("SurgicalInformatics/encryptr")
 ```
 
