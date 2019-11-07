@@ -1,0 +1,198 @@
+---
+title: 'Encryptr: Easily Encrypt and Decrypt Sensitive Data with R'
+author: "Cameron Fairfield"
+date: "2019-Sep-13"
+output:
+  ioslides_presentation:
+    css: styles.css
+    df_print: tibble
+    logo: encryptr_hex.png
+    widescreen: yes
+    incremental: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+```{r, include = FALSE}
+# Following line will delete any existing public and private keys in directory
+# Do not uncomment it unless you are happy to delete these keys
+# If the keys are present the code won't run as it attempts to create them (change the key names at gen_keys() to run slides if keys already exist and can't be deleted
+# system(paste0("rm ", getwd(), "/id_rsa*"))
+options(width=150)
+options(dplyr.print_min = 6, dplyr.print_max = 6)
+```
+
+
+## Data Governance {.fourlinestext}
+
+- Data is precious and sensitive
+
+- Confidential data (when possible) should be anonymised or pseudonomysed
+
+- Patients expect us to safeguard their data
+
+- Solutions include removing unnecessary data and securing necessary data
+
+
+## Research and Data {.fourlinestext}
+
+- Data governance approvals are key components of research approvals
+
+- GDPR (Europe) and HIPAA etc. (USA)
+
+- Data breaches are financially and reputationally costly
+
+- Not all data can be removed from records
+
+
+
+## Encryptr {.fourlinestext}
+
+- Easy pseudonymisation by encryption
+
+- RSA encryption with private / public key pair
+
+- Encryption of vectors, variables and files
+
+- Secure storage of confidential data (and allocation concealment / blinding)
+
+
+## Encryptr on CRAN / Github
+<b>
+```{r installation, eval=FALSE, echo=TRUE}
+install.packages("encryptr") # CRAN
+remotes::install_github("SurgicalInformatics/encryptr")
+```
+
+https://github.com/surgicalinformatics
+</b>
+
+----
+
+```{r encryptr-data, echo = TRUE, message=FALSE}
+### <b>
+library(encryptr)
+### </b>
+library(dplyr) # Used in presentation examples
+
+# Encryptr comes with an example data set of GPs (Family Physicians)
+### <b>
+gp
+### </b>
+```
+
+## Public and Private Keys {.basictext}
+```{r genkeys, echo = TRUE, message = FALSE, warning=FALSE}
+### <b>
+genkeys()
+### </b>
+```
+Default values are <span style="color:green">"id_rsa"</span> and <span style="color:green">"id_rsa.pub"</span>
+
+
+## No Raw Text Password {data-background=#E1D9D7}
+```{r  out.width = "60%", fig.align='center'}
+knitr::include_graphics("API_dialogue.png") 
+```
+
+
+----
+```{r encrypt_var, echo = TRUE}
+### <b>
+gp_encrypt = gp %>% 
+  encrypt(name)
+### </b>
+gp_encrypt %>% 
+  select(organisation_code, name, address1)
+```
+
+
+----
+```{r decrypt_var, echo=TRUE}
+### <b>
+gp_encrypt %>%
+  slice(1:2) %>%
+  decrypt(name) %>% 
+  ### </b>
+  select(organisation_code, name, address1)
+```
+
+## Encryptr Customisation {.fourlinestext}
+
+- Use look-up table - create object with encrypted output and ID variable on which to match
+
+- Write a look-up file
+
+- Customise file names, key names, encrypt several variables
+
+- Use a publicly-available public key
+
+## Encryptr Customisation Examples
+```{r encryptr-customisation, eval=FALSE, echo=TRUE}
+# Creating a lookup table with specified name and filename
+### <b>
+gp %>% 
+  encrypt(name, postcode, 
+          lookup = TRUE, write_lookup = TRUE, 
+          lookup_name = "new_lookup_name")
+
+
+# Using a public key hosted at URL
+gp %>% 
+  encrypt(name, public_key_path = "https://<some_url>/id_rsa.pub")
+### </b>
+```
+
+## Encryptr File Encryption
+```{r file-encryption, eval=FALSE, echo=TRUE}
+gp_encrypt %>% write_csv("gp_enc.csv")
+
+### <b>
+encrypt_file("gp.csv")
+
+
+
+# Encrypted file will have suffix: `.encryptr.bin`
+decrypt_file("gp.csv.encryptr.bin", file_name = "gp2.csv")
+### </b>
+```
+
+## Encryptr Ciphertexts Not Matchable {.fourlinestext}
+- Each repeat of encryption generates a unique number
+
+- Prevents malicious, opportunistic use of public key
+
+- Alternative symmetric encryption outputs can be matched (and not always reversed)
+
+- Alternative methods need a "salt"
+
+----
+```{r encryptr-rep, echo=TRUE}
+### <b>
+encrypt_vec(c("a name", "a name", "a name"))
+### </b>
+```
+
+## Technical Aspects of Encryptr {.fourlinestext}
+- Wrapper around OpenSSL (and purrr)
+
+- RSA asymmetric encryption for vectors (each component in vector < 256 bytes)
+
+- File encryption uses AES technique with symmetric session key which is in turn encrypted by RSA public key
+
+
+## What Encryptr Is Useful For {.fourlinestext}
+
+- Storing confidential data in trials, cohorts, service evaluation, etc.
+
+- Retrieving individual data if needed
+
+- Blinding in RCTs
+
+- Data governance considerations
+
+## Questions
+

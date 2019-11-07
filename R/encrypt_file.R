@@ -13,7 +13,7 @@
 #' referred to as an envelope.
 #'
 #' @param .path Quoted path to file to encrypt.
-#' @param crypt_file_name Optional new name to give encrypted file. Must end with ".encrypter.bin".
+#' @param crypt_file_name Optional new name to give encrypted file. Must end with ".encryptr.bin".
 #' @param public_key_path Quoted path to public key, created with
 #'   \code{\link{genkeys}}.
 #'
