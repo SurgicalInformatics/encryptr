@@ -67,10 +67,6 @@ encrypt <- function(.data, ..., public_key_path = "id_rsa.pub",
   #   stop("Public key cannot be found.")
   # }
 
-  if(!lookup & write_lookup){
-    message("Lookup file can only be written if 'lookup = TRUE'")
-  }
-
   # Check for .csv file and don't overwrite
   if(lookup & write_lookup){
     lookup_file_name <- paste0(lookup_name, ".csv")
