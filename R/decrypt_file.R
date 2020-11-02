@@ -50,8 +50,18 @@ decrypt_file <- function(.path, file_name = NULL, private_key_path = "id_rsa") {
 
   .crypt = readRDS(.path)
   zz = file(.file, "wb")
-  openssl::decrypt_envelope(.crypt$data, .crypt$iv, .crypt$session, key=private_key_path, password = openssl::askpass()) %>%
-    writeBin(zz)
+  
+  tryCatch(
+    error= function(cnd){
+      close(zz)
+      file.remove(.file)
+      stop(cnd)
+    },
+    openssl::decrypt_envelope(.crypt$data, .crypt$iv, .crypt$session,
+                              key = private_key_path, password = openssl::askpass()) %>%
+      writeBin(zz)
+  )
+  
   close(zz)
 
   if (file.exists(.file)){
